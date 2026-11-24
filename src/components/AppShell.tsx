@@ -46,6 +46,7 @@ const TEAM_PAGES = [
   { to: "/faculty", label: "Faculty view (Team 1)" },
   { to: "/matches", label: "Matches (Team 5)" },
   { to: "/p03", label: "Review and publication (Team 3)" },
+  { to: "/p07", label: "Co-op learning (Team 7)" },
 ] as const;
 
 const VIEWS: { id: View; label: string; home: string }[] = [

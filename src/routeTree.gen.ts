@@ -33,10 +33,12 @@ import { Route as P03IndexRouteImport } from './routes/p03.index'
 import { Route as P03EmployerRouteImport } from './routes/p03.employer'
 import { Route as P03SharedRouteImport } from './routes/p03.shared'
 import { Route as P05CoordinatorRouteImport } from './routes/p05.coordinator'
+import { Route as P07IndexRouteImport } from './routes/p07.index'
 import { Route as ApiDeskActionRouteImport } from './routes/api/desk.$action'
 import { Route as ApiP01AssistantRouteImport } from './routes/api/p01.assistant'
 import { Route as ApiP02AiRouteImport } from './routes/api/p02.ai'
 import { Route as ApiP03ReviewRouteImport } from './routes/api/p03.review'
+import { Route as ApiP07LogRouteImport } from './routes/api/p07.log'
 import { Route as EmployerApplicantsIndexRouteImport } from './routes/employer.applicants.index'
 import { Route as EmployerApplicantsIdRouteImport } from './routes/employer.applicants.$id'
 import { Route as EmployerEditIdRouteImport } from './routes/employer.edit.$id'
@@ -161,6 +163,11 @@ const P05CoordinatorRoute = P05CoordinatorRouteImport.update({
   path: '/p05/coordinator',
   getParentRoute: () => rootRouteImport,
 } as any)
+const P07IndexRoute = P07IndexRouteImport.update({
+  id: '/p07/',
+  path: '/p07/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiDeskActionRoute = ApiDeskActionRouteImport.update({
   id: '/api/desk/$action',
   path: '/api/desk/$action',
@@ -179,6 +186,11 @@ const ApiP02AiRoute = ApiP02AiRouteImport.update({
 const ApiP03ReviewRoute = ApiP03ReviewRouteImport.update({
   id: '/api/p03/review',
   path: '/api/p03/review',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiP07LogRoute = ApiP07LogRouteImport.update({
+  id: '/api/p07/log',
+  path: '/api/p07/log',
   getParentRoute: () => rootRouteImport,
 } as any)
 const EmployerApplicantsIndexRoute = EmployerApplicantsIndexRouteImport.update({
@@ -222,10 +234,12 @@ export interface FileRoutesByFullPath {
   '/employer/': typeof EmployerIndexRoute
   '/opportunities/': typeof OpportunitiesIndexRoute
   '/p03/': typeof P03IndexRoute
+  '/p07/': typeof P07IndexRoute
   '/api/desk/$action': typeof ApiDeskActionRoute
   '/api/p01/assistant': typeof ApiP01AssistantRoute
   '/api/p02/ai': typeof ApiP02AiRoute
   '/api/p03/review': typeof ApiP03ReviewRoute
+  '/api/p07/log': typeof ApiP07LogRoute
   '/employer/applicants/$id': typeof EmployerApplicantsIdRoute
   '/employer/edit/$id': typeof EmployerEditIdRoute
   '/employer/applicants/': typeof EmployerApplicantsIndexRoute
@@ -255,10 +269,12 @@ export interface FileRoutesByTo {
   '/employer': typeof EmployerIndexRoute
   '/opportunities': typeof OpportunitiesIndexRoute
   '/p03': typeof P03IndexRoute
+  '/p07': typeof P07IndexRoute
   '/api/desk/$action': typeof ApiDeskActionRoute
   '/api/p01/assistant': typeof ApiP01AssistantRoute
   '/api/p02/ai': typeof ApiP02AiRoute
   '/api/p03/review': typeof ApiP03ReviewRoute
+  '/api/p07/log': typeof ApiP07LogRoute
   '/employer/applicants/$id': typeof EmployerApplicantsIdRoute
   '/employer/edit/$id': typeof EmployerEditIdRoute
   '/employer/applicants': typeof EmployerApplicantsIndexRoute
@@ -289,10 +305,12 @@ export interface FileRoutesById {
   '/employer/': typeof EmployerIndexRoute
   '/opportunities/': typeof OpportunitiesIndexRoute
   '/p03/': typeof P03IndexRoute
+  '/p07/': typeof P07IndexRoute
   '/api/desk/$action': typeof ApiDeskActionRoute
   '/api/p01/assistant': typeof ApiP01AssistantRoute
   '/api/p02/ai': typeof ApiP02AiRoute
   '/api/p03/review': typeof ApiP03ReviewRoute
+  '/api/p07/log': typeof ApiP07LogRoute
   '/employer/applicants/$id': typeof EmployerApplicantsIdRoute
   '/employer/edit/$id': typeof EmployerEditIdRoute
   '/employer/applicants/': typeof EmployerApplicantsIndexRoute
@@ -324,10 +342,12 @@ export interface FileRouteTypes {
     | '/employer/'
     | '/opportunities/'
     | '/p03/'
+    | '/p07/'
     | '/api/desk/$action'
     | '/api/p01/assistant'
     | '/api/p02/ai'
     | '/api/p03/review'
+    | '/api/p07/log'
     | '/employer/applicants/$id'
     | '/employer/edit/$id'
     | '/employer/applicants/'
@@ -357,10 +377,12 @@ export interface FileRouteTypes {
     | '/employer'
     | '/opportunities'
     | '/p03'
+    | '/p07'
     | '/api/desk/$action'
     | '/api/p01/assistant'
     | '/api/p02/ai'
     | '/api/p03/review'
+    | '/api/p07/log'
     | '/employer/applicants/$id'
     | '/employer/edit/$id'
     | '/employer/applicants'
@@ -390,10 +412,12 @@ export interface FileRouteTypes {
     | '/employer/'
     | '/opportunities/'
     | '/p03/'
+    | '/p07/'
     | '/api/desk/$action'
     | '/api/p01/assistant'
     | '/api/p02/ai'
     | '/api/p03/review'
+    | '/api/p07/log'
     | '/employer/applicants/$id'
     | '/employer/edit/$id'
     | '/employer/applicants/'
@@ -424,10 +448,12 @@ export interface RootRouteChildren {
   EmployerIndexRoute: typeof EmployerIndexRoute
   OpportunitiesIndexRoute: typeof OpportunitiesIndexRoute
   P03IndexRoute: typeof P03IndexRoute
+  P07IndexRoute: typeof P07IndexRoute
   ApiDeskActionRoute: typeof ApiDeskActionRoute
   ApiP01AssistantRoute: typeof ApiP01AssistantRoute
   ApiP02AiRoute: typeof ApiP02AiRoute
   ApiP03ReviewRoute: typeof ApiP03ReviewRoute
+  ApiP07LogRoute: typeof ApiP07LogRoute
   EmployerApplicantsIdRoute: typeof EmployerApplicantsIdRoute
   EmployerEditIdRoute: typeof EmployerEditIdRoute
   EmployerApplicantsIndexRoute: typeof EmployerApplicantsIndexRoute
@@ -603,6 +629,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof P05CoordinatorRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/p07/': {
+      id: '/p07/'
+      path: '/p07'
+      fullPath: '/p07/'
+      preLoaderRoute: typeof P07IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/desk/$action': {
       id: '/api/desk/$action'
       path: '/api/desk/$action'
@@ -629,6 +662,13 @@ declare module '@tanstack/react-router' {
       path: '/api/p03/review'
       fullPath: '/api/p03/review'
       preLoaderRoute: typeof ApiP03ReviewRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/p07/log': {
+      id: '/api/p07/log'
+      path: '/api/p07/log'
+      fullPath: '/api/p07/log'
+      preLoaderRoute: typeof ApiP07LogRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/employer/applicants/': {
@@ -680,10 +720,12 @@ const rootRouteChildren: RootRouteChildren = {
   EmployerIndexRoute: EmployerIndexRoute,
   OpportunitiesIndexRoute: OpportunitiesIndexRoute,
   P03IndexRoute: P03IndexRoute,
+  P07IndexRoute: P07IndexRoute,
   ApiDeskActionRoute: ApiDeskActionRoute,
   ApiP01AssistantRoute: ApiP01AssistantRoute,
   ApiP02AiRoute: ApiP02AiRoute,
   ApiP03ReviewRoute: ApiP03ReviewRoute,
+  ApiP07LogRoute: ApiP07LogRoute,
   EmployerApplicantsIdRoute: EmployerApplicantsIdRoute,
   EmployerEditIdRoute: EmployerEditIdRoute,
   EmployerApplicantsIndexRoute: EmployerApplicantsIndexRoute,
